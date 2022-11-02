@@ -5,6 +5,9 @@ public class test3 {
         Scanner scanner = new Scanner(System.in);
         String inputStr = scanner.nextLine();
         int signCount = 0;
+        if(inputStr.length() < 3){
+            throw new Exception();
+        }
         String clearedStr = inputStr.replaceAll(" ", "");
         String[] array = new String[10];
         if(clearedStr.contains("+")) {                                                         // creates array
@@ -17,42 +20,20 @@ public class test3 {
             array = clearedStr.split("\\*");
         }
 
-        int romanOrArabic = 0;                                                                 // 0 - roman, 2 - arabic
+        int romanOrArabic = 0;
         if(array[0].contains("I") || array[0].contains("V") || array[0].contains("X") ) {
             romanOrArabic++;
-            System.out.println(romanOrArabic);
         }
         if(array[1].contains("I") || array[1].contains("V") || array[1].contains("X")) {
             romanOrArabic++;
-            System.out.println(romanOrArabic);
         }
-
-        System.out.println(romanOrArabic);
-
         String [] arab = {"10","1","2","3","4","5","6","7","8","9"};
         String [] rome = {"X","I","II","III","IV","V","VI","VII","VIII","IX"};
         int operand1 = 0;
-        int operand2 = 0;
-        if(romanOrArabic == 2){
-            int x = 0;
-            int i = 0;
-            while(x < 1){
-                if(array[0].contains(rome[i])) {
-                    x++;
-                    operand1 = Integer.parseInt(arab[i]);
-                }
-                i++;
-            }
-            x = 0;
-            i = 0;
-            while(x < 1){
-                if(array[0].contains(rome[i])) {
-                    x++;
-                    operand2 = Integer.parseInt(arab[i]);
-                }
-                i++;
-            }
+        int operand2 = 0;if(romanOrArabic != 2 && romanOrArabic != 0) {
+            throw new Exception();
         }
+
         else if(romanOrArabic == 0) {
             operand1 = Integer.parseInt(array[0]);                                             // operands
             if (operand1 > 10) {
@@ -63,9 +44,26 @@ public class test3 {
                 throw new Exception();
             }
         }
-            else if(romanOrArabic != 2 && romanOrArabic != 0) {
-                throw new Exception();
+            else {
+            int x = 0;
+            int i = 0;
+            while(x < 1){
+                if(array[0].equals(rome[i])) {
+                    x++;
+                    operand1 = Integer.parseInt(arab[i]);
+                }
+                i++;
             }
+            x = 0;
+            i = 0;
+            while(x < 1){
+                if(array[1].equals(rome[i])) {
+                    x++;
+                    operand2 = Integer.parseInt(arab[i]);
+                }
+                i++;
+            }
+        }
         String addStr = inputStr.replace("+", "");           // dunno, sort of sign(+, -, /, *) counter
         String substractStr = inputStr.replace("-", "");
         String multiplyStr = inputStr.replace("*", "");
@@ -77,16 +75,52 @@ public class test3 {
         if(signCount != 1) {
             throw new Exception();
         }
+        int result;
         if(!(inputStr.equals(addStr))) {
-            System.out.println(operand1 + operand2);    // operation
+            result = (operand1 + operand2);                                      // operation
         } else if(!(inputStr.equals(substractStr))) {
-            System.out.println(operand1 - operand2);
+            result = (operand1 - operand2);
         } else if(!(inputStr.equals(multiplyStr))) {
-            System.out.println(operand1 * operand2);
+            result = (operand1 * operand2);
         } else if(!(inputStr.equals(divideStr))) {
-            System.out.println(operand1 / operand2);
+            result = (operand1 / operand2);
         } else {
             throw new Exception();
+        }
+        if(romanOrArabic == 0) {
+            System.out.println(result);
+        }
+        else {
+            if(result < 0){
+                throw new Exception();
+            } else if (result < 1) {
+                System.out.println("");
+            } else {
+                String resultRome = "";
+                int i = result;
+                while (i != 0) {
+                    if (i >= 50) {
+                        resultRome = resultRome + "L";
+                        i = i - 50;
+                    } else if (i >= 10) {
+                        resultRome = resultRome + "X";
+                        i = i - 10;
+                    } else if (i >= 9) {
+                        resultRome = resultRome + "IX";
+                        i = i - 9;
+                    } else if (i >= 5) {
+                        resultRome = resultRome + "V";
+                        i = i - 5;
+                    } else if (i >= 4) {
+                        resultRome = resultRome + "IV";
+                        i = i - 4;
+                    } else if (i >= 1) {
+                        resultRome = resultRome + "I";
+                        i = i - 1;
+                    }
+                }
+                System.out.println(resultRome);
+            }
         }
     }
 }
