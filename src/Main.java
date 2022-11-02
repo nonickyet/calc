@@ -17,7 +17,6 @@ class Main {
         } else if(clearedStr.contains("*")) {
             array = clearedStr.split("\\*");
         }
-
         int romanOrArabic = 0;
         if(array[0].contains("I") || array[0].contains("V") || array[0].contains("X") ) {
             romanOrArabic++;
@@ -28,11 +27,10 @@ class Main {
         String [] arab = {"10","1","2","3","4","5","6","7","8","9"};
         String [] rome = {"X","I","II","III","IV","V","VI","VII","VIII","IX"};
         int operand1 = 0;
-        int operand2 = 0;if(romanOrArabic != 2 && romanOrArabic != 0) {
+        int operand2 = 0;
+        if(romanOrArabic != 2 && romanOrArabic != 0) {
             throw new Exception();
-        }
-
-        else if(romanOrArabic == 0) {
+        } else if(romanOrArabic == 0) {
             operand1 = Integer.parseInt(array[0]);                                             // operands
             if (operand1 > 10) {
                 throw new Exception();
@@ -41,8 +39,7 @@ class Main {
             if (operand2 > 10) {
                 throw new Exception();
             }
-        }
-        else {
+        } else {
             int x = 0;
             int i = 0;
             while(x < 1){
