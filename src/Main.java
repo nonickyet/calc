@@ -118,7 +118,6 @@ class Main {
                  finalResult = resultRome;
             }
         }
-
         return finalResult;
     }
 }
