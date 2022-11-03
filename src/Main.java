@@ -61,7 +61,7 @@ class Main {
             if(result < 0){
                 throw new Exception();
             } else if (result < 1) {
-                System.out.println();
+                finalResult = "";
             } else {
                 String resultRome = "";
                 int i = result;
