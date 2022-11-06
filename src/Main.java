@@ -81,21 +81,21 @@ class Main {
                     }else if (i >= 10) {
                         resultRome = resultRome + "X";
                         i = i - 10;
-                    } else if (i == 9) {
+                    } else if (i >= 9) {
                         resultRome = resultRome + "IX";
                         i = i - 9;
-                    } else if (i == 5) {
+                    } else if (i >= 5) {
                         resultRome = resultRome + "V";
                         i = i - 5;
-                    } else if (i == 4) {
+                    } else if (i >= 4) {
                         resultRome = resultRome + "IV";
                         i = i - 4;
-                    } else if (i == 1) {
+                    } else if (i >= 1) {
                         resultRome = resultRome + "I";
                         i = i - 1;
                     }
                 }
-                 finalResult = resultRome;
+                 finalResult = "" + resultRome;
             }
         }
         return finalResult;
